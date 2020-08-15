@@ -1,0 +1,23 @@
+//time->O(n!)
+//space->O(n^2)
+
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        if(nums.size()<=1)return {nums};//vector<vector> ie why {}
+            vector<vector<int>>result;
+            for(int i=0;i<nums.size();i++){
+                    vector<int>sub(nums.begin(),nums.end());//copy nums int sub
+                    sub.erase(sub.begin()+i);
+                    auto list_sub=permute(sub);
+                    for(int j=0;j<list_sub.size();j++){
+                            vector<int>individual_list=list_sub[j];
+        //new vector and add p1,p2.. from return list of list and now add at first deleted val
+                            individual_list.insert(individual_list.begin(),nums[i]);
+                            //becz from sub it is deleted ie why from num
+                            result.push_back(individual_list);
+                    }
+            }
+            return result;
+    }
+};
