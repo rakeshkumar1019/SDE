@@ -1,0 +1,19 @@
+//time->O(1n)
+//space ->O(1)
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+            if(head==NULL)return head;
+            ListNode *slow=head,*fast=head;
+            while(fast->next!=NULL && fast->next->next!=NULL){
+                    slow=slow->next;
+                    fast=fast->next->next;
+            }
+            if(fast->next==NULL){
+                    return slow;
+            }else{
+                    return slow->next;
+            }
+        
+    }
+};
